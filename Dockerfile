@@ -1,7 +1,7 @@
 FROM dockerimages/ubuntu-baseimage
 RUN sudo apt-get update -y && apt-get upgrade #25623
 RUN apt-get install -y apache2 php5 supervisor
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server pwgen
+RUN alias adduser='useradd' && DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server pwgen
 
 # Remove pre-installed database
 RUN rm -rf /var/lib/mysql/*
