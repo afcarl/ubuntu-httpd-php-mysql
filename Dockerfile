@@ -3,10 +3,11 @@ RUN sudo apt-get update -y && apt-get upgrade #25623
 RUN apt-get install -y apache2 php5 supervisor
 
 ### Adding files at Start 
-ADD adduser /usr/sbin/adduser
-RUN chmod +x /usr/sbin/adduser
+#ADD adduser /usr/sbin/adduser
+#RUN chmod +x /usr/sbin/adduser
+RUN mv /usr/sbin/adduser /usr/sbin/adduser.original && cp /usr/sbin/useradd /usr/sbin/adduser
 RUN /bin/bash -c "alias adduser=useradd && DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server mysql-server-5.5 pwgen"
-
+RUN mv /usr/sbin/adduser.original /usr/sbin/adduser
 # Remove pre-installed database
 RUN rm -rf /var/lib/mysql/*
 
