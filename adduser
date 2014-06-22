@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Replaced to fix chfn error"
+useradd $1
